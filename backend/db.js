@@ -20,7 +20,7 @@ export async function sql(query){
     const client = await getClient();
     await client.connect();
     const res = await client.query(query);
-    console.log(res.rows);
+    // console.log(res.rows);
     await client.end();
     return res.rows
 }

@@ -11,8 +11,7 @@ app.set("view engine", "jsx");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/', router);
-
+app.use("/", router);
 
 const PORT = process.env.PORT || 8080;
 
