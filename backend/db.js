@@ -1,8 +1,9 @@
-import { Client } from 'pg';
-const dotenv = require('dotenv');
+import pg from "pg";
+const {Client} = pg;
+import dotenv from 'dotenv';
 dotenv.config();
 
-async function getClient(){
+export async function getClient(){
 
     const client = new Client({
         user: process.env.POSTGRES_USER,
@@ -12,12 +13,15 @@ async function getClient(){
         port: process.env.POSTGRES_PORT,
     });
     return client;
+
 }
 
-export async function sql(sql, values){
+export async function sql(query){
     const client = await getClient();
     await client.connect();
-    const res = await client.query(sql, values);
+    const res = await client.query(query);
+    console.log(res.rows);
     await client.end();
-    return res;
+    return res.rows
 }
+
