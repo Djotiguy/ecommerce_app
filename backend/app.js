@@ -9,7 +9,7 @@ app.use(express.static("client/build"));
 app.set("client", "./client");
 app.set("view engine", "jsx");
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 app.use("/", router);
 
