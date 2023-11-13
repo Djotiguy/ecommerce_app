@@ -2,7 +2,7 @@ import { sql } from "../db.js";
 
 export async function getOrders(_, res) {
   try {
-    const orders = await sql("SELECT * FROM commande_ligne");
+    const orders = await sql("SELECT * FROM commande");
     return res.status(200).json({ data: orders });
   } catch (error) {
     return res.status(400).send({ error: "Bad request" });
@@ -12,7 +12,7 @@ export async function getOrders(_, res) {
 export async function getAnOrder(req, res) {
   try {
     const orderId = req.params.id;
-    const order = await sql(`SELECT * FROM commande_ligne WHERE id = ${orderId}`);
+    const order = await sql(`SELECT * FROM commande WHERE id = ${orderId}`);
     if (order.length === 0) {
       return res.status(400).json({ error: "Order not found" });
     }
@@ -37,6 +37,15 @@ export async function addPanier(req, res) {
   } catch (error) {
     console.log(error);
     return res.status(400).json({ error: "Error Server" });
+  }
+}
+
+export async function getPanier(_, res){
+  try {
+    const panier = await sql("SELECT * FROM commande_ligne");
+    return res.status(200).json({ data: panier });
+  } catch (error) {
+    return res.status(400).send({ error: "Bad request" });
   }
 }
 

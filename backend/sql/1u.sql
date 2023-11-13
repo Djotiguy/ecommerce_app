@@ -37,6 +37,8 @@ create table if not exists public.commande_ligne(
   updated_at timestamp default now()
 );
 
+
+
 create index commande_users_id_index on public.commande (users_id);
 create index commande_ligne_products_id_index on public.commande_ligne (products_id);
 create index commande_commande_ligne_index on public.commande_ligne (commande_id);
