@@ -24,31 +24,6 @@ export async function getAnOrder(req, res) {
   }
 }
 
-export async function addPanier(req, res) {
-  try {
-    const price = req.body.price;
-    const quantite = req.body.quantity;
-
-    const query = `INSERT INTO public.commande_ligne ("prix_unitaire", "quantite") VALUES (${price}, ${quantite})`;
-
-    const basket = await sql(query);
-
-    return res.status(200).send('commande_ligne added');
-  } catch (error) {
-    console.log(error);
-    return res.status(400).json({ error: "Error Server" });
-  }
-}
-
-export async function getPanier(_, res){
-  try {
-    const panier = await sql("SELECT * FROM commande_ligne");
-    return res.status(200).json({ data: panier });
-  } catch (error) {
-    return res.status(400).send({ error: "Bad request" });
-  }
-}
-
 export async function addOrder(req, res) {
   try {
     const price = req.body.price;
