@@ -55,8 +55,9 @@ export async function addOrder(req, res) {
     const status = "validate"; // Vous pouvez définir la valeur du statut ici
 
     // Utilisez un paramètre lié pour éviter les injections SQL
-    const query = `INSERT INTO commande (status, prix_total) VALUES('${status}', ${price}) RETURNING *`;
-    
+
+   const query = `INSERT INTO commande (status, prix_total) VALUES ('${status}', ${price}) RETURNING *`
+        
     // Exécutez la requête SQL avec les paramètres liés
     const order = await sql(query, [status, price]);
 
@@ -67,5 +68,3 @@ export async function addOrder(req, res) {
     return res.status(400).json("Bad request");
   }
 }
-
- 
